@@ -1,35 +1,33 @@
 package main
 
 import (
+	"fmt"
+
 	"app/controller"
 	"app/models"
-	"fmt"
 )
 
 func main() {
 
-	controller.CreateUser(
-		models.User{
-			Id:      1,
-			Name:    "Shohruh",
-			Surname: "Safarov",
-		},
-	)
+	page := 1000
+	controller.GenerateUser(page)
+	fmt.Println((page / 10))
 
-	controller.CreateUser(
-		models.User{
-			Id:      2,
-			Name:    "Abduqodir",
-			Surname: "Musayev",
-		},
-	)
+	var sum int
 
-	fmt.Println(controller.GetByIdUser(2))
-	fmt.Println(controller.GetByIdUser(1))
-	// controller.DeleteUser(models.User{Id: 1,Name: "q",Surname: "QWER"})
-	// fmt.Println(controller.GetByIdUser(1))
+	fmt.Scan(&sum)
 
-	// for _, user := range controller.GetListUser() {
-	// 	fmt.Println(user)
-	// }
+	users, err := controller.GetListUser(models.GetListRequest{
+		Offset: (sum - 1) * 10,
+		Limit:  10,
+	})
+
+	if err {
+		fmt.Println("users out of range")
+		return
+	}
+
+	for _, user := range users {
+		fmt.Println(user)
+	}
 }
