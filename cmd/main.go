@@ -10,8 +10,10 @@ import (
 func main() {
 
 	page := 1000
+
 	controller.GenerateUser(page)
-	fmt.Println((page / 10))
+	fmt.Println((page / 10), "ta sahifa bor")
+	fmt.Println("qaysi sahifani kurmoqchisiz ")
 
 	var sum int
 

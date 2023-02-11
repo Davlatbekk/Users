@@ -27,6 +27,7 @@ func GenerateUser(count int) {
 			Id:      i + 1,
 			Name:    faker.FirstName(),
 			Surname: faker.LastName(),
+			// Date: faker.Date()
 		})
 	}
 }
